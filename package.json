@@ -1,0 +1,16 @@
+{
+  "name": "estagio-tegra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": ["Tegra", "Estagio"],
+  "author": "Joao Pedro",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.4"
+  }
+}
