@@ -7,7 +7,6 @@ const app = express()
 
 dotenv.config()
 
-var port = process.env.PORT || 8080
 var hostname = process.env.APP_URL || 'localhost'
 
 app.use('/api', router)
@@ -27,6 +26,4 @@ app.get('/',(req, res) => {
     res.send('Hello world')
 })
 
-app.listen(port, hostname, () => {
-    console.log(`Running on port ${port}`)
-})
+app.listen(process.env.PORT || 8080)
