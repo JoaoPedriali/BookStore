@@ -8,13 +8,14 @@ const app = express()
 dotenv.config()
 
 var port = process.env.PORT || 8080
+var hostname = process.env.APP_URL || 'localhost'
 
 app.use('/api', router)
 app.use(bodyparser.urlencoded({
     extended: true
 }))
 
-app.use(bodyparser.json())
+app.use(bodyparser.json()) 
 
 var uri = process.env.MONGO_URI
 
@@ -26,6 +27,6 @@ app.get('/',(req, res) => {
     res.send('Hello world')
 })
 
-app.listen(port, () => {
+app.listen(port, hostname, () => {
     console.log(`Running on port ${port}`)
 })
