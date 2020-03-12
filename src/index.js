@@ -8,13 +8,14 @@ const app = express()
 dotenv.config()
 
 var hostname = process.env.APP_URL || 'localhost'
+app.use(bodyparser.json()) 
 
 app.use('/api', router)
 app.use(bodyparser.urlencoded({
     extended: true
 }))
 
-app.use(bodyparser.json()) 
+
 
 var uri = process.env.MONGO_URI
 
