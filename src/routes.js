@@ -1,4 +1,7 @@
 const router = require('express').Router()
+const bookController = require('../src/controllers/bookController')
+const cartController = require('../src/controllers/cartController')
+
 
 router.get('/', (req, res) =>{
     res.json({
@@ -6,8 +9,6 @@ router.get('/', (req, res) =>{
         message: 'First test'
     })
 })
-
-var bookController = require('../src/controllers/bookController')
 
 router.route('/books')
     .get(bookController.index)
@@ -18,6 +19,15 @@ router.route('/books/:book_id')
     .patch(bookController.update)
     .put(bookController.update)
     .delete(bookController.delete)
+
+
+router.route('/cart')
+    .post(cartController.new)
+
+router.route('/cart/:cart_id')
+    .put(cartController.addItem)
+    .patch(cartController.addItem)
+
 
 //EXPORTS THE API ROUTES
 module.exports = router

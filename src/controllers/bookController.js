@@ -48,9 +48,10 @@ exports.view = (req, res) => {
         res.json({
             message: "Book retrieved",
             data: book
-        })
+         })
     })
 }
+
 
 //updates the data in a book
 exports.update = (req, res) => {
