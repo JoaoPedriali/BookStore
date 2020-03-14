@@ -42,6 +42,7 @@ exports.addItem = (req, res) => {
             .then((book) => {
                 cart.itens.push({id: book._id, quantity: req.body.quantity})
                 cart.total += book.price * req.body.quantity
+                
                 cart.save((err) => {
                     if(err)
                         res.json(err)
@@ -60,10 +61,32 @@ exports.addItem = (req, res) => {
 
 
 exports.removeItem = (req, res) => {
-    Cart.findById(req.param.cart_id, (err, cart) => {
-        if(err)
-            res.json(err)
+    Cart.findById(req.params.cart_id, async(err, cart) => {
+        await Book.findById(req.body.bookId)
+            .then((book) => {
+                var newCart = filterBook(cart,book._id)
+                cart.itens = newCart.itens
+                cart.total -= book.price * req.body.quantity
 
-        //return cart.
+                book.inStock += req.body.quantity
+
+                cart.save((err) => {
+                    if(err)
+                        res.json(err)
+
+                    res.json({
+                        message: "Item Updated",
+                        data: cart
+                    })
+                })
+            })
+            .catch((err) => {
+                res.json(err)
+            })
+            
     })
+}
+
+function filterBook(cart, bookId) {
+    return cart.itens.id != bookId
 }
