@@ -5,14 +5,14 @@ exports.index = (req,res) => {
     Book.get((err, books) => {
         if (err){
             res.json({
-                status:"error",
+                status:'error',
                 message:err
             })
         }
 
         res.json({
-            status: "sucess",
-            message: "Books retrieved sucessfully",
+            status: 'sucess',
+            message: 'Books retrieved sucessfully',
             data: books
         })
     })
@@ -33,7 +33,7 @@ exports.new = (req, res) => {
             res.send(err)
 
         res.json({
-            message: "New Book Added",
+            message: 'New Book Added',
             data: book
         })
     })
@@ -46,7 +46,7 @@ exports.view = (req, res) => {
             res.send(err)
 
         res.json({
-            message: "Book retrieved",
+            message: 'Book retrieved',
             data: book
          })
     })
@@ -67,7 +67,7 @@ exports.update = (req, res) => {
                 res.json(err)
             
             res.json({
-                message: "Book info updated",
+                message: 'Book info updated',
                 data: book
             })
         })
@@ -81,8 +81,39 @@ exports.delete = (req, res) => {
             res.send(err)
 
         res.json({
-            status: "Sucess",
-            message: "Book Deleted"
+            status: 'Sucess',
+            message: 'Book Deleted'
+        })
+    })
+}
+
+
+//Query for the search of books
+exports.search = (req,res) => {
+    var search = req.params.search
+    Book.find({title:{$regex: search, $options: 'i'} }, (err, books) => {
+        if(err)
+            res.json(err)
+
+        res.json({
+            message: 'Books Retrieved',
+            data: books
+        })
+    })
+}
+
+
+//query for the search by author
+exports.searchByAuthor = (req, res) => {
+    var search = req.params.search
+
+    Book.find({author: {$regex: search, $options: 'i'}}, (err, books) => {
+        if (err)
+            res.json(err)
+
+        res.json({
+            message: 'Books Retrieved',
+            data: books
         })
     })
 }

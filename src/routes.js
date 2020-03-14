@@ -10,6 +10,8 @@ router.get('/', (req, res) =>{
     })
 })
 
+
+//BOOKS
 router.route('/books')
     .get(bookController.index)
     .post(bookController.new)
@@ -20,7 +22,13 @@ router.route('/books/:book_id')
     .put(bookController.update)
     .delete(bookController.delete)
 
+router.route('/books/searchauthor/:search')
+    .get(bookController.searchByAuthor)
 
+router.route('/books/search/:search')
+    .get(bookController.search)
+
+//CART
 router.route('/cart')
     .post(cartController.new)
 
