@@ -3,13 +3,6 @@ const bookController = require('../src/controllers/bookController')
 const cartController = require('../src/controllers/cartController')
 
 
-router.get('/', (req, res) =>{
-    res.json({
-        status: 'Router is working',
-        message: 'First test'
-    })
-})
-
 
 //BOOKS
 router.route('/books')

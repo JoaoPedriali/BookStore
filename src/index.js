@@ -3,12 +3,13 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const router = require('./routes')
 const bodyparser = require('body-parser')
+const cors = require('cors')
 const app = express()
 
 dotenv.config()
 
-var hostname = process.env.APP_URL || 'localhost'
-app.use(bodyparser.json()) 
+app.use(bodyparser.json())
+app.use(cors()) 
 
 app.use('/api', router)
 app.use(bodyparser.urlencoded({
@@ -23,8 +24,6 @@ mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true})
 
-app.get('/',(req, res) => {
-    res.send('Hello world')
-})
+app.get('/api')
 
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.PORT || 3333)
