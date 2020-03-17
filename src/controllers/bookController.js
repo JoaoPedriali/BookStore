@@ -21,6 +21,7 @@ exports.index = (req,res) => {
 //handles the creation of a book
 exports.new = (req, res) => {
     var book = new Book()
+    book.imgUrl = req.body.imgUrl
     book.title = req.body.title
     book.author = req.body.author
     book.synopsis = req.body.synopsis

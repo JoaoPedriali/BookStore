@@ -22,6 +22,9 @@ const bookSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    imgUrl:{
+        type: String
+    }
 })
 
 var Book = module.exports = mongoose.model('book', bookSchema)
