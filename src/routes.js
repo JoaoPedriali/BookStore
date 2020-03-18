@@ -25,11 +25,5 @@ router.route('/books/search/:search')
 router.route('/cart')
     .post(cartController.new)
 
-router.route('/cart/:cart_id')
-    .get(cartController.view)
-    .put(cartController.addItem)
-    .patch(cartController.addItem)
-    .delete(cartController.removeItem)
-
 //EXPORTS THE API ROUTES
 module.exports = router
