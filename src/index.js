@@ -20,7 +20,7 @@ app.use(bodyparser.urlencoded({
 if(process.env.NODE_DEV === 'production'){
     app.use(express.static(`${__dirname}/public/`))
 
-    app.get(/.*/, (req, res) => res.sendFile(`${__dirname}/public/idex.html`))
+    app.get(/.*/, (req, res) => res.sendFile(`${__dirname}/public/index.html`))
 }
 
 var uri = process.env.MONGO_URI
