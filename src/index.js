@@ -16,7 +16,12 @@ app.use(bodyparser.urlencoded({
     extended: true
 }))
 
+//Production config
+if(process.env.NODE_DEV === 'production'){
+    app.use(express.static(`${__dirname}/public/`))
 
+    app.get(/.*/, (req, res) => res.sendFile(`${__dirname}/public/idex.html`))
+}
 
 var uri = process.env.MONGO_URI
 
@@ -24,6 +29,5 @@ mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true})
 
-app.get('/api')
 
 app.listen(process.env.PORT || 3333)
