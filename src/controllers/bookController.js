@@ -77,7 +77,7 @@ exports.update = (req, res) => {
 
 //handles the deletion of a book
 exports.delete = (req, res) => {
-    Book.remove({_id: req.params.book_id}, (err, book) => {
+    Book.deleteOne({_id: req.params.book_id}, (err, book) => {
         if(err)
             res.send(err)
 
